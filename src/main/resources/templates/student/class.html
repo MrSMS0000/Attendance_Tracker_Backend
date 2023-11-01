@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student and Course Information</title>
+</head>
+<body>
+<div>
+    <!-- Display student's name and ID -->
+    <h2>Student Information:</h2>
+    <p th:text="${student.name + ' (ID: ' + student.id + ')'}">Student Name and ID</p>
+</div>
+
+<div>
+    <!-- Display course information -->
+    <h2>Course Information:</h2>
+    <p>
+        <strong>Course Name:</strong> <span th:text="${course.name}"></span><br>
+        <strong>Course Code:</strong> <span th:text="${course.code}"></span>
+    </p>
+</div>
+
+<div>
+    <!-- Display studentList dates -->
+    <h2>Present Dates:</h2>
+    <ul>
+        <li th:each="date : ${studentList}">
+            <span th:text="${date}"></span><br>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <!-- Display courseList dates -->
+    <h2>Attendance Dates:</h2>
+    <ul>
+        <li th:each="date : ${courseList}">
+            <span th:text="${date}"></span><br>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

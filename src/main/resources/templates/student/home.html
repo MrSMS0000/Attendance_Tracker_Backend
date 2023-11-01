@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Homepage</title>
+</head>
+<body>
+<h1 th:text="${student.name} + ' (ID: ' + ${student.id} + ')'">Student Name and ID</h1>
+<!-- Buttons to navigate to other student-related APIs -->
+<div>
+    <a th:href="@{/student/gate}"><button>Gate Attendance</button></a>
+    <a th:href="@{/student/view}"><button>Courses Attendance</button></a>
+    <a th:href="@{/student/choose}"><button>Choose Courses</button></a>
+    <a th:href="@{/password/change}"><button>Change Password</button></a>
+</div>
+</body>
+</html>

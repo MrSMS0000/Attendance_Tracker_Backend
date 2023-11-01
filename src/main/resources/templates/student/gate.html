@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gate Attendance History</title>
+</head>
+<body>
+<h1 th:text="${student.name} + ' (ID: ' + ${student.id} + ')'">Student Name and ID</h1>
+
+<h2>Gate Attendance History:</h2>
+<ul>
+    <li th:each="attendanceRecord : ${student.gateAttendanceHistory}">
+        Date: <span th:text="${attendanceRecord.date}"></span><br>
+        Time: <span th:text="${attendanceRecord.time}"></span><br>
+        Status: <span th:text="${attendanceRecord.status}"></span><br>
+        Reason: <span th:text="${attendanceRecord.reason}"></span><br><br>
+    </li>
+</ul>
+</body>
+</html>

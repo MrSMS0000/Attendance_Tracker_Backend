@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Courses Page</title>
+</head>
+<body>
+<!-- Display student's name and ID -->
+<h1 th:text="${student.name} + ' (ID: ' + ${student.id} + ')'">Student Name and ID</h1>
+<p th:text="${response}"></p>
+<!-- List of Courses -->
+<h2>Courses:</h2>
+<ul>
+    <li th:each="course : ${courses}">
+        <strong>Course Name:</strong> <span th:text="${course.name}"></span><br>
+        <strong>Course Code:</strong> <span th:text="${course.code}"></span><br>
+        <strong>Faculty Name:</strong> <span th:text="${course.faculty.name}"></span><br>
+        <form th:action="@{'/student/class/' + ${course.code}}" method="get">
+            <button type="submit">View Attendance</button>
+        </form>
+        <form th:action="@{'/student/mark/' + ${student.id} + '/' + ${course.code}}" method="post">
+            <button type="submit">Mark Attendance</button>
+        </form>
+        <br>
+    </li>
+</ul>
+</body>
+</html>

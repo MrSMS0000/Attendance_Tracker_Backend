@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Change Password</title>
+</head>
+<body>
+<h1>Change Password</h1>
+
+<p><strong>ID:</strong> <span th:text="${person.username}"></span></p>
+
+<p th:if="${message}"><strong th:text="${message}"></strong></p>
+
+<form th:action="@{/password/change}" method="post">
+    <input type="password" name="newPassword" placeholder="New Password" required><br>
+    <input type="password" name="confirmPassword" placeholder="Confirm New Password" required><br>
+    <button type="submit">Change Password</button>
+</form>
+</body>
+</html>
