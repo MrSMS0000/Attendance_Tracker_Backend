@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+<h1>Welcome to the Home Page</h1>
+
+<div>
+    <a th:href="@{/student/home}"><button>Student Home</button></a>
+    <a th:href="@{/faculty/home}"><button>Faculty Home</button></a>
+    <a th:href="@{/security/home}"><button>Security Home</button></a>
+    <a th:href="@{/admin/home}"><button>Admin Home</button></a>
+</div>
+</body>
+</html>
