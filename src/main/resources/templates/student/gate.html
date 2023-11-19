@@ -5,7 +5,23 @@
 </head>
 <body>
 <h1 th:text="${student.name} + ' (ID: ' + ${student.id} + ')'">Student Name and ID</h1>
-
+<div style="color: red;">
+    <p th:text="${message}"></p>
+</div>
+<form th:action="@{'/student/entry/' + ${student.id}}" method="post">
+    <label for="reason">Enter Reason:</label>
+    <input type="text" id="reason" name="reason">
+    <br>
+    <label>Gate Status:</label>
+    <input type="radio" id="inStatus" name="status" value="IN" required>
+    <label for="inStatus">IN</label>
+    <input type="radio" id="outStatus" name="status" value="OUT">
+    <label for="outStatus">OUT</label>
+    <br>
+    <label for="pin">Enter PIN:</label>
+    <input type="text" id="pin" name="pin" required>
+    <button type="submit">Add attendance</button>
+</form>
 <h2>Gate Attendance History:</h2>
 <ul>
     <li th:each="attendanceRecord : ${student.gateAttendanceHistory}">

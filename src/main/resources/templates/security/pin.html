@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Page Title</title>
+</head>
+<body>
+<h1>Gate Security</h1>
+<!-- Display the current PIN using Thymeleaf expression -->
+<p>Current PIN: </p>
+<p th:text="${pin}"></p>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    // Set an interval to refresh the page every 55 seconds
+    setInterval(function() {
+        location.reload(true); // Force a full page reload
+    }, 10000);
+    /*]]>*/
+</script>
+</body>
+</html>

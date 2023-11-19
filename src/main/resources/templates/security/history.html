@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gate History</title>
+</head>
+<body>
+<h1>Gate Security</h1>
+<form th:action="@{/security/student}" method="get">
+    <label for="studentId">Enter Student ID:</label>
+    <input type="text" id="studentId" name="studentId" required>
+    <button type="submit">Search</button>
+</form>
+
+<div th:if="${student}">
+    <p th:text="'Student Name: ' + ${student.name}"></p>
+    <p th:text="'Student ID: ' + ${student.id}"></p>
+    <p>Gate Attendance:</p>
+    <ul>
+        <li th:each="entry : ${student.gateAttendanceHistory}">
+            <p th:text="'Date: ' + ${entry.date}"></p>
+            <p th:text="'Time: ' + ${entry.time}"></p>
+            <p th:text="'Status: ' + ${entry.status}"></p>
+            <p th:text="'Reason: ' + ${entry.reason}"></p>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

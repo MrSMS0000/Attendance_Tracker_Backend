@@ -28,7 +28,7 @@ public class StudentService {
         }
         student.setRoles("ROLE_STUDENT");
         student.setPassword(passwordEncoder.encode(student.getPassword()));
-        template.save(student, "courses");
+        template.save(student, "students");
         return "Student "+student.getId()+" added successfully.";
     }
     public DeleteResult removeStudent(Student student){
