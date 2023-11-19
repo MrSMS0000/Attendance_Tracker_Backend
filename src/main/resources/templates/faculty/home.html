@@ -7,8 +7,7 @@
 <h1 th:text="${faculty.name} + ' (ID: ' + ${faculty.id} + ')'">Faculty Name and ID</h1>
 <!-- Buttons to navigate to other faculty-related APIs -->
 <div>
-    <a th:href="@{/faculty/view}"><button>Courses Attendance</button></a>
-    <a th:href="@{/faculty/choose}"><button>Choose Courses</button></a>
+    <a th:href="@{/faculty/course}"><button>Courses</button></a>
     <a th:href="@{/password/change}"><button>Change Password</button></a>
 </div>
 </body>

@@ -24,5 +24,16 @@
         <br>
     </li>
 </ul>
+<h2>Other Courses:</h2>
+<ul>
+    <li th:each="course : ${otherCourses}">
+        <strong>Course Name:</strong> <span th:text="${course.name}"></span><br>
+        <strong>Course Code:</strong> <span th:text="${course.code}"></span><br>
+        <form th:action="@{'/faculty/add/' + ${faculty.id} + '/' + ${course.code}}" method="post">
+            <button type="submit">Take Course</button>
+        </form>
+        <br>
+    </li>
+</ul>
 </body>
 </html>

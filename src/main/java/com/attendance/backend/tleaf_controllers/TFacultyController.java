@@ -41,29 +41,23 @@ public class TFacultyController {
         return "faculty/home";
     }
 
-    @GetMapping("/choose")
-    public String chooseCourses(Model model, @AuthenticationPrincipal PersonToUserDetails person) {
+    @GetMapping("/course")
+    public String FacultyCourses(Model model, @AuthenticationPrincipal PersonToUserDetails person){
         Faculty faculty = facultyService.getFaculty(Long.parseLong(person.getUsername()));
         model.addAttribute("faculty",faculty);
-        List<Course> courses = courseService.getOtherCoursesByFaculty(Long.parseLong(person.getUsername()));
+        List<Course> courses = courseService.getCoursesByFaculty(Long.parseLong(person.getUsername()));
         model.addAttribute("courses", courses);
-        return "faculty/choose";
+        List<Course> otherCourses = courseService.getOtherCoursesByFaculty(Long.parseLong(person.getUsername()));
+        model.addAttribute("otherCourses", otherCourses);
+        return "faculty/course";
     }
 
     @PostMapping("/add/{id}/{code}")
     public String addFacultyCourse(@PathVariable Long id, @PathVariable String code){
         courseService.addFacultyCourse(id,code);
-        return "redirect:/faculty/choose";
+        return "redirect:/faculty/course";
     }
 
-    @GetMapping("/view")
-    public String viewCourses(Model model, @AuthenticationPrincipal PersonToUserDetails person) {
-        Faculty faculty = facultyService.getFaculty(Long.parseLong(person.getUsername()));
-        model.addAttribute("faculty",faculty);
-        List<Course> courses = courseService.getCoursesByFaculty(Long.parseLong(person.getUsername()));
-        model.addAttribute("courses", courses);
-        return "faculty/view";
-    }
 
     @GetMapping("/class/{code}")
     public String getStudents(@PathVariable String code, Model model, @AuthenticationPrincipal PersonToUserDetails person){
@@ -92,12 +86,12 @@ public class TFacultyController {
     @PostMapping("/start/{code}")
     public String startCourseAttendance(@PathVariable String code){
         attendanceService.startCourseAttendance(code);
-        return "redirect:/faculty/view";
+        return "redirect:/faculty/course";
     }
 
     @PostMapping("/stop/{code}")
     public String stopCourseAttendance(@PathVariable String code){
         attendanceService.stopCourseAttendance(code);
-        return "redirect:/faculty/view";
+        return "redirect:/faculty/course";
     }
 }

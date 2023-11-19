@@ -48,13 +48,21 @@ public class TStudentController {
         return "student/gate";
     }
 
-    @GetMapping("/view")
-    public String viewCourses(Model model, @AuthenticationPrincipal PersonToUserDetails person) {
+    @GetMapping("/course")
+    public String studentCourses(Model model, @AuthenticationPrincipal PersonToUserDetails person){
         Student student = studentService.getStudent(Long.parseLong(person.getUsername()));
         model.addAttribute("student",student);
         List<Course> courses = enrollmentService.getCoursesByStudent(Long.parseLong(person.getUsername()));
         model.addAttribute("courses", courses);
-        return "student/view";
+        List<Course> otherCourses = enrollmentService.getOtherCoursesByStudent(Long.parseLong(person.getUsername()));
+        model.addAttribute("otherCourses", otherCourses);
+        return "student/course";
+    }
+
+    @PostMapping("/add/{id}/{code}")
+    public String addStudentCourse(@PathVariable Long id, @PathVariable String code){
+        enrollmentService.addStudentCourse(id,code);
+        return "redirect:/student/course";
     }
 
     @GetMapping("/class/{code}")
@@ -75,22 +83,7 @@ public class TStudentController {
     public String markAttendance(@PathVariable Long id, @PathVariable String code, Model model, RedirectAttributes redirectAttributes){
         String response = attendanceService.markStudentAttendance(id,code);
         redirectAttributes.addFlashAttribute("response",response);
-        return "redirect:/student/view";
-    }
-
-    @GetMapping("/choose")
-    public String chooseCourses(Model model, @AuthenticationPrincipal PersonToUserDetails person) {
-        Student student = studentService.getStudent(Long.parseLong(person.getUsername()));
-        model.addAttribute("student",student);
-        List<Course> courses = enrollmentService.getOtherCoursesByStudent(Long.parseLong(person.getUsername()));
-        model.addAttribute("courses", courses);
-        return "student/choose";
-    }
-
-    @PostMapping("/add/{id}/{code}")
-    public String addStudentCourse(@PathVariable Long id, @PathVariable String code){
-        enrollmentService.addStudentCourse(id,code);
-        return "redirect:/student/choose";
+        return "redirect:/student/course";
     }
 
     @PostMapping("/entry/{id}")
